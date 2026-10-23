@@ -1,0 +1,8 @@
+{
+  "name": "WonderTales - Global Children's Storybook Studio",
+  "description": "Magical illustrated children's stories from around the world with realistic 3D page-turning, colorful multi-page illustrations, multiple voice narrators, ambient lullabies, and AI story weaving.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
