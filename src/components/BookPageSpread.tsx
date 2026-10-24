@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ChildrenStory, ChildrenStoryPage, StoryVocabularyWord } from "../data/childrenStories";
 import { StoryPlateIllustration } from "./StoryPlateIllustration";
+import { StorySoundBoard } from "./StorySoundBoard";
+import { AtmosphericEffectCanvas } from "./AtmosphericEffectCanvas";
 import {
   playPageTurnSound,
   playChimeSound,
@@ -32,6 +34,7 @@ interface BookPageSpreadProps {
   onOpenCulturalLore?: () => void;
   onOpenColoringStudio?: () => void;
   onOpenVoiceRecorder?: () => void;
+  onOpenQuiz?: () => void;
   customAudioUrl?: string;
 }
 
@@ -100,6 +103,18 @@ const STORY_RIDDLES: Record<
     correctIdx: 1,
     funCelebration: "Sláinte! Finbar cooled his thumb, and immediately understood the songs of birds!",
   },
+  amira_golden_scarab: {
+    question: "What did Amira wish for when placing the golden scarab in the sacred turquoise basin?",
+    options: ["A chest of gold coins", "Water and green gardens for every village along the Nile", "A magic carpet"],
+    correctIdx: 1,
+    funCelebration: "Mabrouk! Wishing kindness and water for others brought the golden dawn to all Egypt!",
+  },
+  curupira_emerald_jaguar: {
+    question: "Why are Curupira's footprints turned backwards in the rainforest?",
+    options: ["To confuse anyone who tries to hurt the forest", "Because he wears shoes backwards", "To dance samba in circles"],
+    correctIdx: 0,
+    funCelebration: "Maravilhoso! His backward tracks gently protect the sacred trees and all forest animals!",
+  },
 };
 
 // Friendly syllable break heuristics for kids
@@ -126,6 +141,7 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
   onOpenCulturalLore,
   onOpenColoringStudio,
   onOpenVoiceRecorder,
+  onOpenQuiz,
   customAudioUrl,
 }) => {
   const [isFlippingForward, setIsFlippingForward] = useState(false);
@@ -133,8 +149,18 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
   const [isNarrating, setIsNarrating] = useState(false);
   const [activeSegmentIdx, setActiveSegmentIdx] = useState<number>(-1);
   const [activeSegment, setActiveSegment] = useState<SpokenSegment | null>(null);
+  const [activeSpokenWord, setActiveSpokenWord] = useState<string | null>(null);
+  const [readingSpeed, setReadingSpeed] = useState<number>(1.0);
   const [fontSizeTier, setFontSizeTier] = useState<"standard" | "large">("standard");
   const [showCelebration, setShowCelebration] = useState(false);
+  const [showAtmosphere, setShowAtmosphere] = useState(true);
+
+  const handleToggleSpeed = () => {
+    const nextSpeed = readingSpeed === 0.8 ? 1.0 : readingSpeed === 1.0 ? 1.25 : 0.8;
+    setReadingSpeed(nextSpeed);
+    speechNarrator.setUserRate(nextSpeed);
+    playChimeSound(659);
+  };
 
   // Early reader & interaction states
   const [readingMode, setReadingMode] = useState<"read_to_me" | "read_by_myself">("read_to_me");
@@ -198,6 +224,7 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
     setIsNarrating(false);
     setActiveSegmentIdx(-1);
     setActiveSegment(null);
+    setActiveSpokenWord(null);
     setActivePhonicsWord(null);
 
     playPageTurnSound();
@@ -231,19 +258,6 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
       return () => clearTimeout(timer);
     }
   }, [currentPageIdx, readingMode]);
-
-  // Keyboard navigation (Left / Right Arrow)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        turnToPage(currentPageIdx + 1);
-      } else if (e.key === "ArrowLeft") {
-        turnToPage(currentPageIdx - 1);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentPageIdx, totalPages]);
 
   // Touch Swipe Handlers for mobile & tablets
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -314,10 +328,15 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
         setActiveSegmentIdx(idx);
         setActiveSegment(seg);
       },
+      onWordBoundary: (word) => {
+        const clean = word.toLowerCase().trim().replace(/[^a-z0-9]/g, "");
+        if (clean) setActiveSpokenWord(clean);
+      },
       onEnd: () => {
         setIsNarrating(false);
         setActiveSegmentIdx(-1);
         setActiveSegment(null);
+        setActiveSpokenWord(null);
 
         // Auto page-turn to next page if enabled
         if (autoPageTurn && currentPageIdx < totalPages - 1) {
@@ -332,6 +351,7 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
         setIsNarrating(false);
         setActiveSegmentIdx(-1);
         setActiveSegment(null);
+        setActiveSpokenWord(null);
         shouldContinueNarrationRef.current = false;
       },
     });
@@ -347,10 +367,35 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
       shouldContinueNarrationRef.current = false;
       setActiveSegmentIdx(-1);
       setActiveSegment(null);
+      setActiveSpokenWord(null);
     } else {
       startPageNarration();
     }
   };
+
+  // Keyboard accessibility navigation (ArrowLeft / ArrowRight / Space)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        document.activeElement?.tagName === "INPUT" ||
+        document.activeElement?.tagName === "TEXTAREA"
+      ) {
+        return;
+      }
+
+      if (e.key === "ArrowRight") {
+        turnToPage(currentPageIdx + 1);
+      } else if (e.key === "ArrowLeft") {
+        turnToPage(currentPageIdx - 1);
+      } else if (e.key === " " && readingMode === "read_to_me") {
+        e.preventDefault();
+        handleToggleNarrate();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentPageIdx, totalPages, readingMode, isNarrating]);
 
   // Play a single character line or quotation on tap
   const handlePlayCharacterLine = (text: string, speaker: string, avatar: string) => {
@@ -524,6 +569,45 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
       return phonicsResult;
     }
 
+    // In 'Read To Me' mode, highlight the currently spoken word with the Bouncing Star Karaoke charm!
+    if (readingMode === "read_to_me" && isNarrating && activeSpokenWord) {
+      const karaokeResult: React.ReactNode[] = [];
+      result.forEach((segment, segIdx) => {
+        if (typeof segment !== "string") {
+          karaokeResult.push(segment);
+          return;
+        }
+
+        const words = segment.split(/(\s+)/);
+        words.forEach((w, wIdx) => {
+          if (!w.trim()) {
+            karaokeResult.push(w);
+            return;
+          }
+
+          const cleanWord = w.toLowerCase().replace(/[^a-z0-9]/g, "");
+          const isSpoken = cleanWord === activeSpokenWord;
+
+          if (isSpoken) {
+            karaokeResult.push(
+              <span
+                key={`karaoke-${parentIdx}-${segIdx}-${wIdx}-${cleanWord}`}
+                className="relative inline-block px-1.5 py-0.5 rounded-lg bg-yellow-300 text-stone-900 font-extrabold scale-105 shadow-xs transition-all ring-2 ring-amber-400 z-10"
+              >
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[11px] animate-bounce pointer-events-none select-none">
+                  ⭐
+                </span>
+                {w}
+              </span>
+            );
+          } else {
+            karaokeResult.push(w);
+          }
+        });
+      });
+      return karaokeResult;
+    }
+
     return result;
   };
 
@@ -587,6 +671,15 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
         >
           {/* Subtle Center Spine Crease Shadow */}
           <div className="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-10 bg-gradient-to-r from-black/8 via-black/18 to-black/8 pointer-events-none z-10" />
+
+          {/* Atmospheric Particle Canvas Effect Layer */}
+          <AtmosphericEffectCanvas
+            country={story.country}
+            culture={story.culture}
+            storyId={story.id}
+            isActive={showAtmosphere}
+            isBedtimeMode={isBedtimeMode}
+          />
 
           {/* 3D Page Flip Leaf Overlay Animation */}
           {isFlippingForward && (
@@ -711,6 +804,39 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
                   </button>
                 )}
 
+                {/* Atmospheric Particle Effects Toggle */}
+                <button
+                  onClick={() => {
+                    playChimeSound(659);
+                    setShowAtmosphere(!showAtmosphere);
+                  }}
+                  className={`px-2 py-0.5 rounded-md text-xs font-['Fredoka'] font-semibold border cursor-pointer flex items-center gap-1 transition-colors ${
+                    showAtmosphere
+                      ? "bg-amber-100/90 text-amber-900 border-amber-300"
+                      : "bg-stone-100 text-stone-500 border-stone-200"
+                  }`}
+                  title={
+                    showAtmosphere
+                      ? "Atmospheric particle effects: ON (Tap to toggle)"
+                      : "Atmospheric particle effects: OFF (Tap to toggle)"
+                  }
+                >
+                  <span>🍃</span>
+                  <span className="hidden sm:inline">Atmosphere</span>
+                </button>
+
+                {/* Folklore Quiz Button */}
+                {onOpenQuiz && (
+                  <button
+                    onClick={onOpenQuiz}
+                    className="px-2.5 py-0.5 rounded-md bg-amber-500 hover:bg-amber-600 text-white text-xs font-['Fredoka'] font-bold shadow-xs cursor-pointer flex items-center gap-1 transition-all"
+                    title="Take the 3-question Folklore Master Quiz for this story!"
+                  >
+                    <span>🧠</span>
+                    <span>Quiz</span>
+                  </button>
+                )}
+
                 {/* Folio Ambience Mood Switcher */}
                 <button
                   onClick={() => {
@@ -762,62 +888,9 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
                 </p>
               </div>
 
-              {/* Interactive Child Story Soundboard Ribbon */}
-              <div className="bg-amber-100/50 rounded-2xl p-2 border border-amber-200/80 mb-2.5 flex items-center justify-between gap-1 flex-wrap">
-                <div className="flex items-center gap-1 text-[11px] font-['Fredoka'] font-bold text-amber-900 shrink-0">
-                  <span>🎶</span>
-                  <span className="hidden sm:inline">Story Sounds:</span>
-                </div>
-                <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap">
-                  <button
-                    onClick={() => playRoarSound()}
-                    className="px-2 py-0.5 rounded-xl bg-white hover:bg-amber-200/80 active:scale-95 text-[11px] font-['Fredoka'] font-semibold text-stone-700 border border-amber-200 shadow-2xs transition-all flex items-center gap-1 cursor-pointer"
-                    title="Play friendly roar sound"
-                  >
-                    <span>🦁</span>
-                    <span className="hidden xs:inline">Roar</span>
-                  </button>
-                  <button
-                    onClick={() => playSplashSound()}
-                    className="px-2 py-0.5 rounded-xl bg-white hover:bg-amber-200/80 active:scale-95 text-[11px] font-['Fredoka'] font-semibold text-stone-700 border border-amber-200 shadow-2xs transition-all flex items-center gap-1 cursor-pointer"
-                    title="Play water splash sound"
-                  >
-                    <span>💧</span>
-                    <span className="hidden xs:inline">Splash</span>
-                  </button>
-                  <button
-                    onClick={() => playWindBreezeSound()}
-                    className="px-2 py-0.5 rounded-xl bg-white hover:bg-amber-200/80 active:scale-95 text-[11px] font-['Fredoka'] font-semibold text-stone-700 border border-amber-200 shadow-2xs transition-all flex items-center gap-1 cursor-pointer"
-                    title="Play whispering breeze sound"
-                  >
-                    <span>🌬️</span>
-                    <span className="hidden xs:inline">Wind</span>
-                  </button>
-                  <button
-                    onClick={() => playBellChimeSound()}
-                    className="px-2 py-0.5 rounded-xl bg-white hover:bg-amber-200/80 active:scale-95 text-[11px] font-['Fredoka'] font-semibold text-stone-700 border border-amber-200 shadow-2xs transition-all flex items-center gap-1 cursor-pointer"
-                    title="Play temple bell sound"
-                  >
-                    <span>🔔</span>
-                    <span className="hidden xs:inline">Bell</span>
-                  </button>
-                  <button
-                    onClick={() => playGiggleSound()}
-                    className="px-2 py-0.5 rounded-xl bg-white hover:bg-amber-200/80 active:scale-95 text-[11px] font-['Fredoka'] font-semibold text-stone-700 border border-amber-200 shadow-2xs transition-all flex items-center gap-1 cursor-pointer"
-                    title="Play cheerful giggle sound"
-                  >
-                    <span>😄</span>
-                    <span className="hidden xs:inline">Giggle</span>
-                  </button>
-                  <button
-                    onClick={() => playSparkleSound()}
-                    className="px-2 py-0.5 rounded-xl bg-white hover:bg-amber-200/80 active:scale-95 text-[11px] font-['Fredoka'] font-semibold text-stone-700 border border-amber-200 shadow-2xs transition-all flex items-center gap-1 cursor-pointer"
-                    title="Play magic sparkle sound"
-                  >
-                    <span>✨</span>
-                    <span className="hidden xs:inline">Sparkle</span>
-                  </button>
-                </div>
+              {/* Interactive Story Sound FX Wand */}
+              <div className="mb-2.5">
+                <StorySoundBoard />
               </div>
 
               {/* Character Spoken Dialogue Cards */}
@@ -933,6 +1006,15 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
                     🎛️
                   </button>
 
+                  {/* Reading Speed Toggle Button */}
+                  <button
+                    onClick={handleToggleSpeed}
+                    className="px-2.5 py-1.5 rounded-full bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-['Fredoka'] font-bold transition-all shadow-xs cursor-pointer flex items-center gap-1"
+                    title="Toggle reading speed: 0.8x (Gentle) · 1.0x (Normal) · 1.25x (Lively)"
+                  >
+                    <span>{readingSpeed === 0.8 ? "🐢 0.8x" : readingSpeed === 1.25 ? "🚀 1.25x" : "🐇 1.0x"}</span>
+                  </button>
+
                   {/* Voice Recorder Studio Button */}
                   {onOpenVoiceRecorder && (
                     <button
@@ -1037,6 +1119,17 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
         </button>
       </div>
 
+      {/* Keyboard & Touch Navigation Tip */}
+      <div className="mt-2 text-center text-[11px] font-['Fredoka'] text-stone-500 opacity-75 hidden sm:block">
+        <span>💡 Keyboard tips: Press </span>
+        <kbd className="px-1.5 py-0.5 bg-stone-200/90 text-stone-700 rounded font-mono text-[10px] font-bold">◀</kbd>
+        <span> or </span>
+        <kbd className="px-1.5 py-0.5 bg-stone-200/90 text-stone-700 rounded font-mono text-[10px] font-bold">▶</kbd>
+        <span> to turn pages · </span>
+        <kbd className="px-1.5 py-0.5 bg-stone-200/90 text-stone-700 rounded font-mono text-[10px] font-bold">Space</kbd>
+        <span> to read aloud / pause</span>
+      </div>
+
       {/* Storybook Finished Celebration Modal with Interactive Cultural Riddle */}
       {showCelebration && (
         <div
@@ -1120,11 +1213,24 @@ export const BookPageSpread: React.FC<BookPageSpreadProps> = ({
               )}
             </div>
 
+            {onOpenQuiz && (
+              <button
+                onClick={() => {
+                  setShowCelebration(false);
+                  onOpenQuiz();
+                }}
+                className="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-['Fredoka'] font-bold text-sm sm:text-base shadow-md transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2 mb-2.5"
+              >
+                <span>🧠</span>
+                <span>Take Folklore Master Quiz (Earn Diploma) 📜</span>
+              </button>
+            )}
+
             <button
               onClick={() => setShowCelebration(false)}
-              className="w-full py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-['Fredoka'] font-bold text-base shadow-md transition-all active:scale-95 cursor-pointer"
+              className="w-full py-2.5 rounded-2xl bg-amber-100 hover:bg-amber-200 text-amber-900 font-['Fredoka'] font-bold text-sm transition-all active:scale-95 cursor-pointer"
             >
-              Hooray! Collect Badge 🏆
+              Close & View Story 📖
             </button>
           </div>
         </div>

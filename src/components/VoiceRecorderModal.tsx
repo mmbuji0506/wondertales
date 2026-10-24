@@ -99,6 +99,15 @@ export const VoiceRecorderModal: React.FC<VoiceRecorderModalProps> = ({
     }
   };
 
+  const [voiceEffect, setVoiceEffect] = useState<"normal" | "chipmunk" | "bear" | "turtle">("normal");
+
+  const getEffectRate = () => {
+    if (voiceEffect === "chipmunk") return 1.35;
+    if (voiceEffect === "bear") return 0.8;
+    if (voiceEffect === "turtle") return 0.7;
+    return 1.0;
+  };
+
   const handlePlayRecording = () => {
     if (!recordedUrl) return;
 
@@ -111,6 +120,7 @@ export const VoiceRecorderModal: React.FC<VoiceRecorderModalProps> = ({
     playSparkleSound();
     const el = new Audio(recordedUrl);
     audioElRef.current = el;
+    el.playbackRate = getEffectRate();
     el.onended = () => setIsPlaying(false);
     el.onerror = () => setIsPlaying(false);
     el.play().catch(() => {});
@@ -155,7 +165,7 @@ export const VoiceRecorderModal: React.FC<VoiceRecorderModalProps> = ({
         </div>
 
         {/* Read Prompt Script Box */}
-        <div className="bg-amber-50/90 rounded-2xl p-4 border border-amber-200 mb-5 text-left max-h-48 overflow-y-auto shadow-inner">
+        <div className="bg-amber-50/90 rounded-2xl p-4 border border-amber-200 mb-4 text-left max-h-44 overflow-y-auto shadow-inner">
           <span className="text-[10px] font-['Fredoka'] font-bold text-amber-800 uppercase tracking-wider block mb-1">
             Story Text to Read:
           </span>
@@ -165,7 +175,7 @@ export const VoiceRecorderModal: React.FC<VoiceRecorderModalProps> = ({
         </div>
 
         {/* Record Controls */}
-        <div className="flex flex-col items-center justify-center gap-3 my-4">
+        <div className="flex flex-col items-center justify-center gap-3 my-3">
           {isRecording ? (
             <div className="flex flex-col items-center gap-2">
               <button
@@ -199,9 +209,44 @@ export const VoiceRecorderModal: React.FC<VoiceRecorderModalProps> = ({
           )}
         </div>
 
+        {/* Playback Voice Effect Filter Selector */}
+        {recordedUrl && !isRecording && (
+          <div className="bg-amber-50/70 p-3 rounded-2xl border border-amber-200 my-3">
+            <span className="text-[11px] font-['Fredoka'] font-bold uppercase tracking-wider text-amber-900 block mb-1.5 text-left">
+              🎭 Voice Character Effect:
+            </span>
+            <div className="grid grid-cols-4 gap-1.5">
+              {[
+                { id: "normal", label: "🎙️ Natural", rate: 1.0 },
+                { id: "chipmunk", label: "🐿️ Pixie", rate: 1.35 },
+                { id: "bear", label: "🐻 Bear", rate: 0.8 },
+                { id: "turtle", label: "🐢 Turtle", rate: 0.7 },
+              ].map((fx) => (
+                <button
+                  key={fx.id}
+                  onClick={() => {
+                    playChimeSound(659);
+                    setVoiceEffect(fx.id as any);
+                    if (audioElRef.current) {
+                      audioElRef.current.playbackRate = fx.rate;
+                    }
+                  }}
+                  className={`py-1.5 px-2 rounded-xl text-xs font-['Fredoka'] font-semibold transition-all cursor-pointer ${
+                    voiceEffect === fx.id
+                      ? "bg-amber-500 text-white shadow-xs"
+                      : "bg-white text-stone-700 hover:bg-amber-100 border border-amber-200"
+                  }`}
+                >
+                  {fx.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Playback & Save actions */}
         {recordedUrl && !isRecording && (
-          <div className="mt-4 pt-4 border-t border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="mt-3 pt-3 border-t border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-3">
             <button
               onClick={handlePlayRecording}
               className="w-full sm:w-auto px-4 py-2.5 rounded-2xl bg-amber-100 hover:bg-amber-200 text-amber-900 font-['Fredoka'] font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer"

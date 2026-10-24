@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChildrenStory } from "../data/childrenStories";
-import { playChimeSound } from "../services/soundEffects";
+import { playChimeSound, playFanfareSound } from "../services/soundEffects";
 
 interface StoryLibraryGalleryProps {
   stories: ChildrenStory[];
@@ -13,9 +13,9 @@ interface StoryLibraryGalleryProps {
 
 const REGION_FILTERS = [
   { id: "all", label: "All Worlds 🌍" },
-  { id: "Africa", label: "Africa 🇬🇭" },
+  { id: "Africa", label: "Africa 🇬🇭🇪🇬" },
   { id: "Asia", label: "Asia 🇯🇵🇨🇳🇮🇳" },
-  { id: "Americas", label: "Americas 🇵🇪🇲🇽" },
+  { id: "Americas", label: "Americas 🇵🇪🇲🇽🇧🇷" },
   { id: "Europe", label: "Europe 🇳🇴🇮🇪" },
   { id: "Oceania", label: "Oceania 🌺🇦🇺" },
 ];
@@ -30,6 +30,12 @@ export const StoryLibraryGallery: React.FC<StoryLibraryGalleryProps> = ({
 }) => {
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSurpriseStory = () => {
+    playFanfareSound();
+    const randomStory = stories[Math.floor(Math.random() * stories.length)];
+    onSelectStory(randomStory);
+  };
 
   const filteredStories = stories.filter((s) => {
     // Continent filter
@@ -69,14 +75,25 @@ export const StoryLibraryGallery: React.FC<StoryLibraryGalleryProps> = ({
           </p>
         </div>
 
-        {/* Action Button: AI Magic Story Weaver */}
-        <button
-          onClick={onOpenStoryWeaver}
-          className="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-['Fredoka'] font-bold text-sm shadow-md transition-all active:scale-95 flex items-center gap-2 shrink-0 cursor-pointer"
-        >
-          <span>🪄</span>
-          <span>Weave New Story with AI</span>
-        </button>
+        {/* Action Buttons: Surprise Me & AI Story Weaver */}
+        <div className="flex items-center gap-2 shrink-0 flex-wrap">
+          <button
+            onClick={handleSurpriseStory}
+            className="px-3.5 py-2.5 rounded-2xl bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-['Fredoka'] font-bold text-sm shadow-xs transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer"
+            title="Pick a random surprise story from the treasury!"
+          >
+            <span>🎲</span>
+            <span>Surprise Me!</span>
+          </button>
+
+          <button
+            onClick={onOpenStoryWeaver}
+            className="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-['Fredoka'] font-bold text-sm shadow-md transition-all active:scale-95 flex items-center gap-2 cursor-pointer"
+          >
+            <span>🪄</span>
+            <span>Weave Story with AI</span>
+          </button>
+        </div>
       </div>
 
       {/* Search Input & Continent Filters */}

@@ -10,6 +10,11 @@ import { AudioSettingsModal } from "./components/AudioSettingsModal";
 import { CulturalLoreDrawer } from "./components/CulturalLoreDrawer";
 import { StoryCertificateModal } from "./components/StoryCertificateModal";
 import { BedtimeStars } from "./components/BedtimeStars";
+import { StoryMapModal } from "./components/StoryMapModal";
+import { ColoringStudioModal } from "./components/ColoringStudioModal";
+import { VoiceRecorderModal } from "./components/VoiceRecorderModal";
+import { StoryMemoryGameModal } from "./components/StoryMemoryGameModal";
+import { StoryWonderQuizModal } from "./components/StoryWonderQuizModal";
 import { NARRATOR_PERSONAS, speechNarrator } from "./services/speechNarrator";
 import {
   playChimeSound,
@@ -29,11 +34,15 @@ export default function App() {
   const [narratorPersonaId, setNarratorPersonaId] = useState<string>("grandma_willow");
   const [ambientTheme, setAmbientTheme] = useState<MusicTheme>("lullaby");
   const [autoPageTurn, setAutoPageTurn] = useState<boolean>(true);
+  const [screenWarmthFilter, setScreenWarmthFilter] = useState<"none" | "candle" | "twilight" | "deep">("none");
 
   // Child interactive quests & rewards
   const [foundStars, setFoundStars] = useState<string[]>([]);
   const [isBedtimeMode, setIsBedtimeMode] = useState<boolean>(false);
   const [explorerName, setExplorerName] = useState<string>("Little Explorer");
+
+  // Custom Recorded Voices (key: `${storyId}-page-${pageNumber}`)
+  const [customPageVoices, setCustomPageVoices] = useState<Record<string, string>>({});
 
   // Modals & Drawers
   const [activeWordMagic, setActiveWordMagic] = useState<StoryVocabularyWord | null>(null);
@@ -43,6 +52,11 @@ export default function App() {
   const [isAudioSettingsOpen, setIsAudioSettingsOpen] = useState<boolean>(false);
   const [loreStory, setLoreStory] = useState<ChildrenStory | null>(null);
   const [isCertificateOpen, setIsCertificateOpen] = useState<boolean>(false);
+  const [isStoryMapOpen, setIsStoryMapOpen] = useState<boolean>(false);
+  const [isColoringStudioOpen, setIsColoringStudioOpen] = useState<boolean>(false);
+  const [isVoiceRecorderOpen, setIsVoiceRecorderOpen] = useState<boolean>(false);
+  const [isMemoryGameOpen, setIsMemoryGameOpen] = useState<boolean>(false);
+  const [isQuizOpen, setIsQuizOpen] = useState<boolean>(false);
 
   // Start gentle ambient lullaby on first user click
   useEffect(() => {
@@ -97,6 +111,17 @@ export default function App() {
     setIsCertificateOpen(true);
   };
 
+  const handleSavePageVoice = (pageNum: number, audioUrl: string) => {
+    setCustomPageVoices((prev) => ({
+      ...prev,
+      [`${activeStory.id}-page-${pageNum}`]: audioUrl,
+    }));
+  };
+
+  const currentPage = activeStory.pages[currentPageIdx] || activeStory.pages[0];
+  const currentVoiceKey = `${activeStory.id}-page-${currentPage.pageNumber}`;
+  const currentVoiceAudio = customPageVoices[currentVoiceKey];
+
   return (
     <div
       className={`min-h-screen w-full flex flex-col justify-between transition-colors duration-700 relative overflow-x-hidden ${
@@ -138,8 +163,8 @@ export default function App() {
           </span>
         </button>
 
-        {/* Zone 2: 4 Clean single-line navigation links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-semibold font-['Fredoka']">
+        {/* Zone 2: Clean single-line navigation links */}
+        <nav className="hidden md:flex items-center gap-5 lg:gap-6 text-sm font-semibold font-['Fredoka']">
           <button
             onClick={() => {
               playChimeSound(587);
@@ -153,6 +178,19 @@ export default function App() {
           >
             <span>📚</span>
             <span>Treasury Shelf</span>
+          </button>
+
+          <button
+            onClick={() => {
+              playChimeSound(659);
+              setIsStoryMapOpen(true);
+            }}
+            className={`hover:text-amber-600 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer ${
+              isBedtimeMode ? "text-slate-300" : "text-stone-700"
+            }`}
+          >
+            <span>🗺️</span>
+            <span>Story Atlas</span>
           </button>
 
           <button
@@ -180,7 +218,20 @@ export default function App() {
             }`}
           >
             <span>🛂</span>
-            <span>Explorer Passport</span>
+            <span>Passport</span>
+          </button>
+
+          <button
+            onClick={() => {
+              playChimeSound(784);
+              setIsMemoryGameOpen(true);
+            }}
+            className={`hover:text-amber-600 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer ${
+              isBedtimeMode ? "text-slate-300" : "text-stone-700"
+            }`}
+          >
+            <span>🃏</span>
+            <span>Memory Game</span>
           </button>
 
           <button
@@ -191,12 +242,44 @@ export default function App() {
             className="hover:text-amber-600 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer text-amber-600 font-bold"
           >
             <span>🪄</span>
-            <span>AI Story Weaver</span>
+            <span>Story Weaver</span>
           </button>
         </nav>
 
         {/* Zone 3: Primary Action Controls */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Folktale Memory Match Game Button */}
+          <button
+            onClick={() => {
+              playChimeSound(784);
+              setIsMemoryGameOpen(true);
+            }}
+            title="Play World Folktale Memory Match Game"
+            className={`hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-['Fredoka'] font-bold transition-transform active:scale-95 ${
+              isBedtimeMode
+                ? "bg-slate-800 text-amber-300 hover:bg-slate-700"
+                : "bg-amber-100/80 hover:bg-amber-200 text-amber-900 border border-amber-300"
+            }`}
+          >
+            <span>🃏 Match Game</span>
+          </button>
+
+          {/* Folklore Quiz Button */}
+          <button
+            onClick={() => {
+              playChimeSound(659);
+              setIsQuizOpen(true);
+            }}
+            title="Take the Folklore Master Quiz"
+            className={`hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-['Fredoka'] font-bold transition-transform active:scale-95 ${
+              isBedtimeMode
+                ? "bg-slate-800 text-amber-300 hover:bg-slate-700"
+                : "bg-amber-500 hover:bg-amber-600 text-white shadow-xs"
+            }`}
+          >
+            <span>🧠 Folklore Quiz</span>
+          </button>
+
           {/* Certificate Award Button */}
           <button
             onClick={() => setIsCertificateOpen(true)}
@@ -277,10 +360,14 @@ export default function App() {
             onOpenNarratorModal={() => setIsNarratorModalOpen(true)}
             onOpenAudioSettings={() => setIsAudioSettingsOpen(true)}
             onOpenCulturalLore={() => setLoreStory(activeStory)}
+            onOpenColoringStudio={() => setIsColoringStudioOpen(true)}
+            onOpenVoiceRecorder={() => setIsVoiceRecorderOpen(true)}
+            customAudioUrl={currentVoiceAudio}
             activePersonaAvatar={activePersona.avatar}
             activePersonaName={activePersona.name}
             isBedtimeMode={isBedtimeMode}
             autoPageTurn={autoPageTurn}
+            onOpenQuiz={() => setIsQuizOpen(true)}
           />
         ) : (
           <StoryLibraryGallery
@@ -306,7 +393,14 @@ export default function App() {
       >
         <div className="flex flex-col sm:flex-row items-center justify-between max-w-6xl mx-auto gap-2">
           <span>WonderTales · Beautiful Illustrated Children's Stories From Around The World</span>
-          <div className="flex items-center gap-4 text-[11px] font-['Fredoka']">
+          <div className="flex items-center gap-3 sm:gap-4 text-[11px] font-['Fredoka'] flex-wrap justify-center">
+            <button
+              onClick={() => setIsStoryMapOpen(true)}
+              className="hover:underline text-amber-700 cursor-pointer font-bold"
+            >
+              🗺️ Story Atlas
+            </button>
+            <span aria-hidden="true">·</span>
             <button
               onClick={() => setIsPassportOpen(true)}
               className="hover:underline text-amber-700 cursor-pointer"
@@ -376,6 +470,8 @@ export default function App() {
         onSelectAmbientTheme={(th) => setAmbientTheme(th)}
         autoPageTurn={autoPageTurn}
         onToggleAutoPageTurn={(en) => setAutoPageTurn(en)}
+        screenWarmthFilter={screenWarmthFilter}
+        onSelectScreenWarmth={setScreenWarmthFilter}
       />
 
       {loreStory && (
@@ -393,6 +489,60 @@ export default function App() {
         isOpen={isCertificateOpen}
         onClose={() => setIsCertificateOpen(false)}
       />
+
+      <StoryMapModal
+        stories={stories}
+        isOpen={isStoryMapOpen}
+        onClose={() => setIsStoryMapOpen(false)}
+        onSelectStory={(s) => {
+          handleSelectStory(s);
+          setIsStoryMapOpen(false);
+        }}
+        foundStars={foundStars}
+      />
+
+      <ColoringStudioModal
+        page={currentPage}
+        storyTitle={activeStory.title}
+        isOpen={isColoringStudioOpen}
+        onClose={() => setIsColoringStudioOpen(false)}
+      />
+
+      <VoiceRecorderModal
+        page={currentPage}
+        storyTitle={activeStory.title}
+        isOpen={isVoiceRecorderOpen}
+        onClose={() => setIsVoiceRecorderOpen(false)}
+        onSaveRecording={handleSavePageVoice}
+        existingAudioUrl={currentVoiceAudio}
+      />
+
+      <StoryMemoryGameModal
+        isOpen={isMemoryGameOpen}
+        onClose={() => setIsMemoryGameOpen(false)}
+        onRewardStar={handleFindStar}
+      />
+
+      <StoryWonderQuizModal
+        story={activeStory}
+        isOpen={isQuizOpen}
+        onClose={() => setIsQuizOpen(false)}
+        onRewardStars={handleFindStar}
+        onOpenDiploma={() => setIsCertificateOpen(true)}
+      />
+
+      {/* Screen Nightlight Warmth Filter Overlay */}
+      {screenWarmthFilter !== "none" && (
+        <div
+          className={`fixed inset-0 pointer-events-none z-50 transition-opacity duration-700 ${
+            screenWarmthFilter === "candle"
+              ? "bg-amber-600/12 mix-blend-multiply"
+              : screenWarmthFilter === "twilight"
+              ? "bg-indigo-950/16 mix-blend-multiply"
+              : "bg-yellow-700/18 mix-blend-multiply"
+          }`}
+        />
+      )}
     </div>
   );
 }

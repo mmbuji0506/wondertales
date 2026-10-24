@@ -135,6 +135,30 @@ export const NARRATOR_PERSONAS: NarratorPersona[] = [
     preferredVoices: ["Google UK English Male", "Fred", "George", "Alex", "en-GB"],
     themeColor: "#6A4C93",
   },
+  {
+    id: "pari_peacock",
+    name: "Pari the Peacock Princess",
+    avatar: "🦚",
+    tagline: "Graceful & Melodic Storyteller",
+    description: "Poetic, elegant, and shimmering with joyful warmth—like colorful feathers dancing in the morning breeze.",
+    rateMultiplier: 0.92,
+    pitchMultiplier: 1.12,
+    samplePhrase: "Step softly into the enchanted garden, where every lotus flower has a magical tale to tell...",
+    preferredVoices: ["Google UK English Female", "Samantha", "Victoria", "en-IN", "en-GB"],
+    themeColor: "#059669",
+  },
+  {
+    id: "cosmo_starhopper",
+    name: "Cosmo the Little Starhopper",
+    avatar: "🚀",
+    tagline: "Spunky Space Explorer",
+    description: "Zippy, curious, and cheerful—ready to blast off on bedtime adventures across the galaxies!",
+    rateMultiplier: 1.1,
+    pitchMultiplier: 1.25,
+    samplePhrase: "3, 2, 1... Lift off! Fasten your starlight seatbelt, we are zooming into an awesome story!",
+    preferredVoices: ["Google US English", "Tessa", "Karen", "en-US"],
+    themeColor: "#4F46E5",
+  },
 ];
 
 export interface SpokenSegment {
@@ -255,7 +279,14 @@ class SpeechNarratorService {
       lower.includes("balam") ||
       lower.includes("quetzal") ||
       lower.includes("finbar") ||
-      lower.includes("cub")
+      lower.includes("cub") ||
+      lower.includes("amira") ||
+      lower.includes("scarab") ||
+      lower.includes("khepri") ||
+      lower.includes("ibis") ||
+      lower.includes("curupira") ||
+      lower.includes("boto") ||
+      lower.includes("toucan")
     ) {
       return { pitch: 1.34, rate: 1.08 };
     }
@@ -270,7 +301,10 @@ class SpeechNarratorService {
       lower.includes("buffalo") ||
       lower.includes("condor") ||
       lower.includes("father") ||
-      lower.includes("finegas")
+      lower.includes("finegas") ||
+      lower.includes("pharaoh") ||
+      lower.includes("sphinx") ||
+      lower.includes("giant anaconda")
     ) {
       return { pitch: 0.74, rate: 0.88 };
     }

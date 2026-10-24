@@ -8,13 +8,14 @@ import {
   playChimeSound,
   startAmbientMusic,
   stopAmbientMusic,
+  MusicTheme,
 } from "../services/soundEffects";
 
 interface NarratorSelectorProps {
   currentPersonaId: string;
   onSelectPersona: (personaId: string) => void;
-  ambientTheme: "lullaby" | "forest" | "meadow" | "ocean" | "none";
-  onSelectAmbientTheme: (theme: "lullaby" | "forest" | "meadow" | "ocean" | "none") => void;
+  ambientTheme: MusicTheme;
+  onSelectAmbientTheme: (theme: MusicTheme) => void;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -51,7 +52,7 @@ export const NarratorSelector: React.FC<NarratorSelectorProps> = ({
     speechNarrator.setUserRate(speed);
   };
 
-  const handleMusicChange = (theme: "lullaby" | "forest" | "meadow" | "ocean" | "none") => {
+  const handleMusicChange = (theme: MusicTheme) => {
     onSelectAmbientTheme(theme);
     if (theme === "none") {
       stopAmbientMusic();

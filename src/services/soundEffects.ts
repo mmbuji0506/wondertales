@@ -433,8 +433,153 @@ export function playCorrectAnswerSound() {
   } catch {}
 }
 
+/**
+ * Cheerful birdsong tweet sound for nature & storyboards
+ */
+export function playBirdChirpSound() {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx || sfxMasterVolume <= 0) return;
+
+    const chirps = [
+      { startF: 2200, endF: 3100, t: 0, dur: 0.08 },
+      { startF: 3200, endF: 2400, t: 0.09, dur: 0.09 },
+      { startF: 2600, endF: 3500, t: 0.2, dur: 0.1 },
+    ];
+
+    chirps.forEach(({ startF, endF, t, dur }) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(startF, ctx.currentTime + t);
+      osc.frequency.exponentialRampToValueAtTime(endF, ctx.currentTime + t + dur);
+
+      gain.gain.setValueAtTime(0.18 * sfxMasterVolume, ctx.currentTime + t);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + t + dur);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(ctx.currentTime + t);
+      osc.stop(ctx.currentTime + t + dur + 0.02);
+    });
+  } catch {}
+}
+
+/**
+ * Resonant African / tribal djembe drum beat
+ */
+export function playDrumBeatSound() {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx || sfxMasterVolume <= 0) return;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(140, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(45, ctx.currentTime + 0.22);
+
+    gain.gain.setValueAtTime(0.4 * sfxMasterVolume, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.28);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 0.3);
+  } catch {}
+}
+
+/**
+ * Gentle Celtic harp arpeggio
+ */
+export function playHarpStrumSound() {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx || sfxMasterVolume <= 0) return;
+
+    const freqs = [392.0, 493.88, 587.33, 739.99, 880.0]; // G Major
+    freqs.forEach((f, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(f, ctx.currentTime + idx * 0.06);
+
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.setValueAtTime(0.2 * sfxMasterVolume, ctx.currentTime + idx * 0.06);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.06 + 0.9);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(ctx.currentTime + idx * 0.06);
+      osc.stop(ctx.currentTime + idx * 0.06 + 0.95);
+    });
+  } catch {}
+}
+
+/**
+ * Ascending magic wand sparkle glissando
+ */
+export function playMagicWandSound() {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx || sfxMasterVolume <= 0) return;
+
+    const glissNotes = [523.25, 659.25, 783.99, 1046.5, 1318.5, 1567.98, 2093.0];
+    glissNotes.forEach((f, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(f, ctx.currentTime + idx * 0.045);
+
+      gain.gain.setValueAtTime(0.18 * sfxMasterVolume, ctx.currentTime + idx * 0.045);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.045 + 0.35);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(ctx.currentTime + idx * 0.045);
+      osc.stop(ctx.currentTime + idx * 0.045 + 0.4);
+    });
+  } catch {}
+}
+
+/**
+ * Cozy campfire crackle pop
+ */
+export function playCampfireCrackleSound() {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx || sfxMasterVolume <= 0) return;
+
+    for (let i = 0; i < 4; i++) {
+      const delay = i * 0.08 + Math.random() * 0.04;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "square";
+      osc.frequency.setValueAtTime(800 + Math.random() * 600, ctx.currentTime + delay);
+
+      gain.gain.setValueAtTime(0.08 * sfxMasterVolume, ctx.currentTime + delay);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.03);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(ctx.currentTime + delay);
+      osc.stop(ctx.currentTime + delay + 0.04);
+    }
+  } catch {}
+}
+
 // Procedural Ambient Music Generator
-export type MusicTheme = "lullaby" | "forest" | "meadow" | "ocean" | "none";
+export type MusicTheme = "lullaby" | "forest" | "meadow" | "ocean" | "rainforest" | "starlight" | "none";
 
 interface AmbientMusicController {
   stop: () => void;
@@ -468,6 +613,8 @@ export function startAmbientMusic(theme: MusicTheme = "lullaby", initialVolume =
     forest: [220.0, 261.63, 293.66, 329.63, 392.0, 440.0, 523.25], // A Minor Pentatonic / Forest Breeze
     meadow: [293.66, 329.63, 369.99, 440.0, 493.88, 587.33], // D Major / Sunny Meadow
     ocean: [196.0, 246.94, 293.66, 329.63, 392.0, 493.88], // G Major 7th / Floating Ocean
+    rainforest: [261.63, 311.13, 349.23, 392.0, 466.16, 523.25], // C Dorian / Tropical Rainforest
+    starlight: [329.63, 392.0, 493.88, 587.33, 659.25, 783.99], // E Minor Pentatonic / Cosmic Starlight
   };
 
   const scale = scales[theme] || scales.lullaby;

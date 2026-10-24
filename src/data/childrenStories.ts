@@ -3742,4 +3742,899 @@ export const CHILDREN_STORIES: ChildrenStory[] = [
       },
     ],
   },
+  // =========================================================================
+  // STORY 11: EGYPT (NILE VALLEY) — AMIRA & THE GOLDEN SCARAB OF THE NILE
+  // =========================================================================
+  {
+    id: "amira_golden_scarab",
+    title: "Amira & The Golden Scarab of the Nile",
+    subtitle: "An Ancient Egyptian Tale from the Banks of the River Nile",
+    region: "North Africa",
+    country: "Egypt",
+    flag: "🇪🇬",
+    culture: "Ancient Egyptian & Nubian",
+    ageRange: "4–9 years",
+    readTimeMinutes: 6,
+    theme: "Kindness, Patience & Inner Light",
+    moral: "Patience, kindness to small creatures, and courage unlock true inner wisdom.",
+    coverCloth: "#D97706",
+    coverSpine: "#92400E",
+    accentColor: "#F59E0B",
+    paperColor: "#FFFDF7",
+    cardColor: "#FFFBEB",
+    summary:
+      "Along the sparkling waters of Egypt's River Nile, young Amira rescues a tiny golden scarab caught in papyrus reeds. Together, they journey past the Great Sphinx to restore morning light and discover the secret of true courage.",
+    coverSvg: `<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="nileCoverSky" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1E1B4B" />
+          <stop offset="50%" stop-color="#7C2D12" />
+          <stop offset="100%" stop-color="#F59E0B" />
+        </linearGradient>
+        <linearGradient id="pyramidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FCD34D" />
+          <stop offset="100%" stop-color="#B45309" />
+        </linearGradient>
+        <linearGradient id="nileRiver" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#0284C7" />
+          <stop offset="100%" stop-color="#0F172A" />
+        </linearGradient>
+      </defs>
+      <rect width="800" height="600" fill="url(#nileCoverSky)" />
+      <!-- Golden Sun Disc -->
+      <circle cx="400" cy="220" r="85" fill="#FDE047" opacity="0.9" filter="drop-shadow(0 0 25px #F59E0B)" />
+      <!-- Great Pyramids in Silhouette -->
+      <polygon points="120,400 240,240 360,400" fill="url(#pyramidGrad)" opacity="0.9" />
+      <polygon points="280,420 440,210 600,420" fill="url(#pyramidGrad)" />
+      <polygon points="520,410 640,260 760,410" fill="url(#pyramidGrad)" opacity="0.85" />
+      <!-- Nile River Foreground -->
+      <path d="M 0 420 Q 300 400 480 460 Q 650 510 800 490 L 800 600 L 0 600 Z" fill="url(#nileRiver)" />
+      <!-- Papyrus Reeds along the river bank -->
+      <path d="M 40 600 Q 50 480 70 450 M 60 600 Q 75 470 100 440 M 80 600 Q 90 490 120 460" stroke="#15803D" stroke-width="4" fill="none" />
+      <!-- Radiant Golden Scarab Beetle hovering in center -->
+      <g transform="translate(400, 260) scale(1.4)">
+        <!-- Sun wings -->
+        <path d="M -10 -5 Q -60 -40 -70 10 Q -40 20 -10 5 Z" fill="#F59E0B" opacity="0.8" />
+        <path d="M 10 -5 Q 60 -40 70 10 Q 40 20 10 5 Z" fill="#F59E0B" opacity="0.8" />
+        <!-- Shell -->
+        <ellipse cx="0" cy="0" rx="22" ry="28" fill="#FCD34D" stroke="#B45309" stroke-width="2" />
+        <path d="M 0 -28 L 0 28" stroke="#B45309" stroke-width="2" />
+        <circle cx="0" cy="-30" r="10" fill="#F59E0B" />
+        <circle cx="-4" cy="-32" r="2.5" fill="#1E293B" />
+        <circle cx="4" cy="-32" r="2.5" fill="#1E293B" />
+      </g>
+    </svg>`,
+    pages: [
+      {
+        pageNumber: 1,
+        chapterTitle: "Chapter 1: The Papyrus Marsh & The Shimmering Lotus",
+        scenePrompt: "Young Amira by the Nile riverbank discovering a golden iridescent scarab beetle caught in tall papyrus stalks.",
+        narrativeText:
+          "On the tranquil shores of the great River Nile, beneath the whispering shade of date palms, lived eight-year-old Amira. Her grandfather was a temple gardener who taught her that every living creature carried a spark of the sun. One warm afternoon, while watching blue kingfishers dive for silver minnows, Amira spotted a dazzling speck of gold caught gently in the tangled stalks of a flowering papyrus reed.",
+        dialogueLines: [
+          {
+            speaker: "Amira",
+            speakerRole: "character",
+            avatar: "👧🏽",
+            text: "Hold still, little sun jewel. I will untangle these reeds so you can spread your wings!",
+            voiceName: "Aoede",
+            mood: "gentle & caring",
+          },
+          {
+            speaker: "Grandfather Tariq",
+            speakerRole: "character",
+            avatar: "👴🏽",
+            text: "The scarab rolls the morning sun across the sky, Amira. Treat him with kindness, and blessings shall follow.",
+            voiceName: "Charon",
+            mood: "warm & wise",
+          },
+        ],
+        illustrationSvg: `<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="egyptSky1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FDE047" />
+              <stop offset="40%" stop-color="#FDBA74" />
+              <stop offset="100%" stop-color="#38BDF8" />
+            </linearGradient>
+            <linearGradient id="nileWater1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#0284C7" />
+              <stop offset="100%" stop-color="#075985" />
+            </linearGradient>
+          </defs>
+          <rect width="800" height="360" fill="url(#egyptSky1)" />
+          <rect y="360" width="800" height="240" fill="url(#nileWater1)" />
+          <!-- Date Palm Trees on riverbank -->
+          <g transform="translate(140, 180)">
+            <path d="M 0 240 Q 20 120 0 0" stroke="#78350F" stroke-width="16" fill="none" stroke-linecap="round" />
+            <path d="M 0 0 Q -80 -40 -120 20" stroke="#15803D" stroke-width="8" fill="none" />
+            <path d="M 0 0 Q -50 -70 -70 -100" stroke="#16A34A" stroke-width="8" fill="none" />
+            <path d="M 0 0 Q 60 -70 90 -90" stroke="#16A34A" stroke-width="8" fill="none" />
+            <path d="M 0 0 Q 80 -30 110 30" stroke="#15803D" stroke-width="8" fill="none" />
+          </g>
+          <!-- Papyrus reeds clustered in right foreground -->
+          <g transform="translate(560, 300)">
+            <path d="M 0 300 Q -20 150 0 0 M 30 300 Q 10 140 40 0 M 70 300 Q 80 160 60 0" stroke="#16A34A" stroke-width="6" fill="none" />
+            <!-- Papyrus umbrella tufts -->
+            <circle cx="0" cy="0" r="28" fill="#22C55E" opacity="0.9" />
+            <circle cx="40" cy="0" r="32" fill="#15803D" opacity="0.9" />
+            <circle cx="60" cy="0" r="24" fill="#22C55E" opacity="0.85" />
+          </g>
+          <!-- Amira kneeling by the water in traditional white linen tunic & turquoise bead necklace -->
+          <g transform="translate(420, 410)">
+            <!-- Linen dress -->
+            <path d="M -25 30 L 25 30 L 35 120 L -35 120 Z" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" />
+            <!-- Turquoise necklace collar -->
+            <path d="M -18 30 Q 0 45 18 30 Z" fill="#06B6D4" stroke="#F59E0B" stroke-width="2" />
+            <!-- Head & braided hair with gold band -->
+            <circle cx="0" cy="0" r="22" fill="#FED7AA" />
+            <path d="M -22 -6 Q 0 -26 22 -6 Q 26 26 20 30 L -20 30 Q -26 26 -22 -6 Z" fill="#1E293B" />
+            <line x1="-22" y1="-4" x2="22" y2="-4" stroke="#F59E0B" stroke-width="3" />
+            <!-- Gentle smiling face -->
+            <circle cx="6" cy="2" r="3" fill="#1E293B" />
+            <path d="M 2 10 Q 7 14 12 10" stroke="#78350F" stroke-width="2" fill="none" />
+            <!-- Arm reaching out to help the scarab -->
+            <path d="M 20 45 Q 60 40 90 20" stroke="#FED7AA" stroke-width="9" stroke-linecap="round" fill="none" />
+          </g>
+          <!-- Golden Scarab Beetle glistening in the reed -->
+          <g transform="translate(520, 420)">
+            <ellipse cx="0" cy="0" rx="14" ry="18" fill="#FBBF24" stroke="#B45309" stroke-width="2" />
+            <circle cx="0" cy="-18" r="7" fill="#F59E0B" />
+            <!-- Sparkle rings -->
+            <circle cx="0" cy="0" r="26" fill="none" stroke="#FDE047" stroke-width="1.5" stroke-dasharray="4,4" />
+          </g>
+        </svg>`,
+        illustrationCaption: "Amira carefully untangles the sparkling golden scarab beetle from the flowering papyrus reeds.",
+        vocabulary: [
+          {
+            word: "Papyrus",
+            pronunciation: "puh-PYE-rus",
+            definition: "A tall marsh plant that grows along the Nile riverbanks, used in ancient times to make paper.",
+            funFact: "Ancient Egyptian scribes invented the world's first paper scrolls from papyrus over 4,500 years ago!",
+          },
+          {
+            word: "Scarab",
+            pronunciation: "SKAIR-ub",
+            definition: "A shiny beetle celebrated in Egypt as a symbol of the morning sun, good luck, and new beginnings.",
+            funFact: "Children in ancient Egypt wore carved turquoise scarab amulets to bring courage and protection!",
+          },
+        ],
+        hiddenStar: { xPercent: 65, yPercent: 68, clue: "Look right beside the sparkling golden beetle in the green reeds!" },
+        funActivity: "Gently open both your hands like blooming lotus petals and take three calm, deep breaths.",
+      },
+      {
+        pageNumber: 2,
+        chapterTitle: "Chapter 2: The Whistling Winds of the Sphinx",
+        scenePrompt: "Amira and Khepri the golden scarab walking across the golden sand dunes toward the great stone Sphinx under a starry twilight.",
+        narrativeText:
+          "As Amira freed the little beetle, it fluttered its wings, and a shower of golden stardust sprinkled across her palms. The beetle spoke in a voice like chiming glass: 'Thank you, kind child! I am Khepri. An ancient sandstorm has hidden the Temple of the Turquoise Stars. Will you journey with me past the Great Sphinx to restore the morning light?' Amira nodded bravely and set out across the warm desert sands.",
+        dialogueLines: [
+          {
+            speaker: "Khepri the Golden Scarab",
+            speakerRole: "character",
+            avatar: "🪲",
+            text: "Fear not the desert winds, Amira! Look into the sky, for the North Star is our lantern.",
+            voiceName: "Fenrir",
+            mood: "cheerful & brave",
+          },
+          {
+            speaker: "The Great Sphinx",
+            speakerRole: "character",
+            avatar: "🦁",
+            text: "Who walks with the heart of morning into the valley of quiet kings?",
+            voiceName: "Orus",
+            mood: "deep & majestic",
+          },
+        ],
+        illustrationSvg: `<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="twilightDunes" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#0F172A" />
+              <stop offset="40%" stop-color="#312E81" />
+              <stop offset="70%" stop-color="#7C2D12" />
+              <stop offset="100%" stop-color="#D97706" />
+            </linearGradient>
+            <linearGradient id="sandGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FCD34D" />
+              <stop offset="100%" stop-color="#92400E" />
+            </linearGradient>
+          </defs>
+          <rect width="800" height="600" fill="url(#twilightDunes)" />
+          <!-- Twinkling Egyptian Constellations -->
+          <circle cx="150" cy="80" r="3" fill="#FFFFFF" />
+          <circle cx="280" cy="110" r="2.5" fill="#FDE047" />
+          <circle cx="620" cy="70" r="3.5" fill="#FFFFFF" />
+          <circle cx="710" cy="120" r="2" fill="#FDE047" />
+          <!-- Giant Golden Moon -->
+          <circle cx="680" cy="160" r="50" fill="#FEF08A" opacity="0.9" />
+          <!-- Majestic Great Sphinx in Desert Dunes -->
+          <g transform="translate(480, 280)">
+            <!-- Sphinx body -->
+            <path d="M 0 160 L 180 160 Q 220 140 200 80 Q 160 50 100 60 L 20 90 Z" fill="#D97706" stroke="#92400E" stroke-width="3" />
+            <!-- Sphinx paws stretched forward -->
+            <rect x="140" y="140" width="90" height="25" rx="10" fill="#B45309" />
+            <!-- Sphinx headdress & head -->
+            <ellipse cx="60" cy="40" rx="36" ry="42" fill="#D97706" />
+            <path d="M 20 20 L 100 20 L 90 75 L 30 75 Z" fill="#F59E0B" />
+            <path d="M 20 10 L 100 10 L 115 65 L 85 85 L 5 65 Z" fill="#FCD34D" stroke="#B45309" stroke-width="2" />
+          </g>
+          <!-- Rolling Sand Dunes -->
+          <path d="M 0 380 Q 250 320 500 400 Q 680 460 800 420 L 800 600 L 0 600 Z" fill="url(#sandGrad)" />
+          <path d="M 0 460 Q 350 420 800 510 L 800 600 L 0 600 Z" fill="#B45309" opacity="0.8" />
+          <!-- Amira and Glowing Khepri walking together -->
+          <g transform="translate(180, 430)">
+            <rect x="-18" y="20" width="36" height="75" rx="6" fill="#FFFFFF" />
+            <circle cx="0" cy="0" r="18" fill="#FED7AA" />
+            <path d="M -18 -4 Q 0 -22 18 -4 Q 22 18 16 24 L -16 24 Z" fill="#1E293B" />
+            <!-- Small lantern in hand -->
+            <circle cx="28" cy="35" r="8" fill="#FDE047" opacity="0.9" />
+            <path d="M 24 28 L 32 28 L 30 42 L 26 42 Z" stroke="#78350F" stroke-width="2" fill="none" />
+          </g>
+          <!-- Flying Khepri Scarab leading the path -->
+          <g transform="translate(260, 390)">
+            <ellipse cx="0" cy="0" rx="12" ry="16" fill="#FBBF24" />
+            <path d="M -8 -4 Q -25 -20 -28 6 Q -16 10 -6 3 Z" fill="#FDE047" opacity="0.9" />
+            <path d="M 8 -4 Q 25 -20 28 6 Q 16 10 6 3 Z" fill="#FDE047" opacity="0.9" />
+            <circle cx="0" cy="0" r="22" fill="none" stroke="#FDE047" stroke-width="1.5" stroke-dasharray="3,3" />
+          </g>
+        </svg>`,
+        illustrationCaption: "Khepri leads Amira with his luminous wings past the Great Sphinx resting beneath the desert stars.",
+        vocabulary: [
+          {
+            word: "Sphinx",
+            pronunciation: "SFINKS",
+            definition: "A famous ancient monument with the body of a lion and the head of a wise ruler, guarding the pyramids.",
+            funFact: "The Great Sphinx of Giza was carved from a single enormous limestone ridge thousands of years ago!",
+          },
+          {
+            word: "Constellation",
+            pronunciation: "kahn-stuh-LAY-shun",
+            definition: "A pattern of stars in the night sky that looks like a person, animal, or object.",
+            funFact: "Egyptian astronomers mapped constellations to know the exact week the Nile would flood with fertile soil!",
+          },
+        ],
+        hiddenStar: { xPercent: 85, yPercent: 27, clue: "Look right inside the radiant golden moon in the sky!" },
+        funActivity: "Pose like a noble lion with paws forward, take a deep breath, and let out a gentle desert rumble!",
+      },
+      {
+        pageNumber: 3,
+        chapterTitle: "Chapter 3: The Temple of the Turquoise Stars",
+        scenePrompt: "Amira and Khepri inside a grand ancient Egyptian columned temple solving the riddle of the golden sundial.",
+        narrativeText:
+          "Deep within the sandstone canyon stood the Temple of the Turquoise Stars. Its towering lotus columns were carved with golden hieroglyphs that glowed softly in the dark. In the center of the hall rested the Sun Basin, filled with clear Nile water. 'To summon the dawn,' read Amira from the carved stones, 'place the golden beetle into the water with a generous wish for all who thirst.'",
+        dialogueLines: [
+          {
+            speaker: "Amira",
+            speakerRole: "character",
+            avatar: "👧🏽",
+            text: "I wish for water and green gardens for every village along the Nile, from the mountains to the sea!",
+            voiceName: "Aoede",
+            mood: "noble & radiant",
+          },
+          {
+            speaker: "Temple Echo",
+            speakerRole: "character",
+            avatar: "🏛️",
+            text: "A wish whispered for others shines ten thousand times brighter than a wish made for oneself.",
+            voiceName: "Kore",
+            mood: "ethereal & melodic",
+          },
+        ],
+        illustrationSvg: `<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="templeHall" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#0F172A" />
+              <stop offset="60%" stop-color="#451A03" />
+              <stop offset="100%" stop-color="#78350F" />
+            </linearGradient>
+            <linearGradient id="turquoiseGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#22D3EE" />
+              <stop offset="100%" stop-color="#0284C7" />
+            </linearGradient>
+          </defs>
+          <rect width="800" height="600" fill="url(#templeHall)" />
+          <!-- Towering Egyptian Temple Columns with lotus capitals -->
+          <g transform="translate(160, 0)">
+            <rect x="-30" y="0" width="60" height="600" fill="#92400E" />
+            <!-- Lotus capital -->
+            <path d="M -50 80 L 50 80 L 30 140 L -30 140 Z" fill="#D97706" />
+            <!-- Gold hieroglyph bands -->
+            <line x1="-30" y1="200" x2="30" y2="200" stroke="#FDE047" stroke-width="4" />
+            <line x1="-30" y1="320" x2="30" y2="320" stroke="#FDE047" stroke-width="4" />
+          </g>
+          <g transform="translate(640, 0)">
+            <rect x="-30" y="0" width="60" height="600" fill="#92400E" />
+            <path d="M -50 80 L 50 80 L 30 140 L -30 140 Z" fill="#D97706" />
+            <line x1="-30" y1="200" x2="30" y2="200" stroke="#FDE047" stroke-width="4" />
+            <line x1="-30" y1="320" x2="30" y2="320" stroke="#FDE047" stroke-width="4" />
+          </g>
+          <!-- Central Sacred Sun Basin filled with glowing turquoise water -->
+          <ellipse cx="400" cy="460" rx="140" ry="50" fill="#1E293B" stroke="#F59E0B" stroke-width="6" />
+          <ellipse cx="400" cy="460" rx="125" ry="42" fill="url(#turquoiseGlow)" />
+          <!-- Luminous beam shooting upward toward ceiling stars -->
+          <polygon points="340,460 460,460 430,0 370,0" fill="#67E8F9" opacity="0.45" />
+          <!-- Golden Khepri resting in center of the basin -->
+          <g transform="translate(400, 455) scale(1.3)">
+            <ellipse cx="0" cy="0" rx="18" ry="22" fill="#FDE047" stroke="#B45309" stroke-width="2" />
+            <circle cx="0" cy="0" r="40" fill="none" stroke="#FDE047" stroke-width="2" stroke-dasharray="5,5" />
+          </g>
+          <!-- Amira standing reverently beside the basin -->
+          <g transform="translate(240, 420)">
+            <rect x="-18" y="25" width="36" height="85" rx="6" fill="#FFFFFF" />
+            <circle cx="0" cy="0" r="20" fill="#FED7AA" />
+            <path d="M -20 -6 Q 0 -24 20 -6 Q 24 22 18 28 L -18 28 Z" fill="#1E293B" />
+            <path d="M -15 25 Q 0 38 15 25 Z" fill="#06B6D4" />
+            <path d="M 15 45 Q 40 40 60 55" stroke="#FED7AA" stroke-width="8" stroke-linecap="round" fill="none" />
+          </g>
+          <!-- Floating turquoise light motes -->
+          <circle cx="360" cy="280" r="4" fill="#67E8F9" opacity="0.8" />
+          <circle cx="440" cy="220" r="5" fill="#FDE047" opacity="0.9" />
+          <circle cx="390" cy="140" r="6" fill="#A5F3FC" opacity="0.9" />
+        </svg>`,
+        illustrationCaption: "Amira whispers her heartfelt wish over the sacred turquoise basin, sending light cascading through the temple.",
+        vocabulary: [
+          {
+            word: "Hieroglyphs",
+            pronunciation: "HY-roh-gliffs",
+            definition: "The ancient Egyptian writing system made of pictures representing sounds, objects, and ideas.",
+            funFact: "There were over 700 individual hieroglyphic symbols including owls, water ripples, and golden eyes!",
+          },
+          {
+            word: "Turquoise",
+            pronunciation: "TUR-kwoyz",
+            definition: "A precious sky-blue and green gemstone mined in the Sinai desert of Egypt.",
+            funFact: "Ancient Pharaohs believed turquoise captured the joy of the morning sky and life-giving water.",
+          },
+        ],
+        hiddenStar: { xPercent: 50, yPercent: 23, clue: "Look right in the luminous turquoise beam rising to the temple roof!" },
+        funActivity: "Trace a water ripple circle in the air with your finger and whisper a wish for your family.",
+      },
+      {
+        pageNumber: 4,
+        chapterTitle: "Chapter 4: Dawn Over the Great Pyramids",
+        scenePrompt: "Magnificent sunrise over the pyramids and the Nile with Amira wearing a golden sun crown alongside Khepri and her grandfather.",
+        narrativeText:
+          "With a majestic rush of warmth, the sun burst over the eastern horizon! Golden rays bathed the Great Pyramids in amber brilliance, and the river sparkled like thousands of diamonds. Khepri placed a tiny braided lotus crown upon Amira's head. Her grandfather hugged her tightly as white ibises took flight across the blue sky. The Nile was singing, and every child in the valley awakened to joy.",
+        dialogueLines: [
+          {
+            speaker: "Khepri the Sun Scarab",
+            speakerRole: "character",
+            avatar: "🪲",
+            text: "You have proven that true bravery is caring for the small and voiceless, Guardian Amira!",
+            voiceName: "Fenrir",
+            mood: "triumphant & joyous",
+          },
+          {
+            speaker: "Grandfather Tariq",
+            speakerRole: "character",
+            avatar: "👴🏽",
+            text: "Look at the dawn, little sun flower. Today the whole world shines brighter because of you.",
+            voiceName: "Charon",
+            mood: "proud & loving",
+          },
+        ],
+        illustrationSvg: `<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="egyptDawn" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#38BDF8" />
+              <stop offset="35%" stop-color="#FDE047" />
+              <stop offset="70%" stop-color="#F97316" />
+              <stop offset="100%" stop-color="#BE185D" />
+            </linearGradient>
+            <linearGradient id="goldenPyramid" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FDE047" />
+              <stop offset="100%" stop-color="#B45309" />
+            </linearGradient>
+            <linearGradient id="nileDawnRiver" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#0284C7" />
+              <stop offset="100%" stop-color="#0369A1" />
+            </linearGradient>
+          </defs>
+          <rect width="800" height="380" fill="url(#egyptDawn)" />
+          <rect y="380" width="800" height="220" fill="url(#nileDawnRiver)" />
+          <!-- Radiant Morning Sun with golden sunburst beams -->
+          <circle cx="400" cy="200" r="75" fill="#FFFFFF" filter="drop-shadow(0 0 35px #FBBF24)" />
+          <!-- Sun beams -->
+          <line x1="400" y1="200" x2="150" y2="40" stroke="#FDE047" stroke-width="4" opacity="0.6" />
+          <line x1="400" y1="200" x2="650" y2="40" stroke="#FDE047" stroke-width="4" opacity="0.6" />
+          <line x1="400" y1="200" x2="80" y2="180" stroke="#FDE047" stroke-width="4" opacity="0.6" />
+          <line x1="400" y1="200" x2="720" y2="180" stroke="#FDE047" stroke-width="4" opacity="0.6" />
+          <!-- Three Pyramids bathed in morning gold -->
+          <polygon points="100,380 220,240 340,380" fill="url(#goldenPyramid)" />
+          <polygon points="260,380 400,210 540,380" fill="url(#goldenPyramid)" />
+          <polygon points="480,380 600,260 720,380" fill="url(#goldenPyramid)" opacity="0.9" />
+          <!-- Flying White Ibises across the sunrise -->
+          <g transform="translate(240, 140)">
+            <path d="M 0 0 Q 15 -18 30 -5 Q 15 5 0 0" fill="#FFFFFF" />
+            <path d="M 10 -8 Q 20 -25 35 -15" stroke="#FFFFFF" stroke-width="2" fill="none" />
+          </g>
+          <g transform="translate(560, 110)">
+            <path d="M 0 0 Q 15 -18 30 -5 Q 15 5 0 0" fill="#FFFFFF" />
+            <path d="M 10 -8 Q 20 -25 35 -15" stroke="#FFFFFF" stroke-width="2" fill="none" />
+          </g>
+          <!-- Amira and Grandfather celebrating on green shore -->
+          <g transform="translate(360, 440)">
+            <!-- Grandfather Tariq -->
+            <rect x="-40" y="10" width="35" height="90" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2" />
+            <circle cx="-22" cy="-10" r="18" fill="#FED7AA" />
+            <path d="M -32 -2 Q -22 18 -12 -2 Z" fill="#E2E8F0" />
+            <!-- Amira with golden lotus crown -->
+            <rect x="15" y="25" width="30" height="75" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" />
+            <circle cx="30" cy="5" r="16" fill="#FED7AA" />
+            <path d="M 14 0 Q 30 -16 46 0 Q 50 18 44 24 L 16 24 Z" fill="#1E293B" />
+            <!-- Golden lotus crown -->
+            <path d="M 18 -6 L 24 -16 L 30 -8 L 36 -16 L 42 -6 Z" fill="#FDE047" stroke="#B45309" stroke-width="1.5" />
+          </g>
+        </svg>`,
+        illustrationCaption: "The golden sunrise illuminates the pyramids as Amira and Grandfather Tariq celebrate the return of the dawn.",
+        vocabulary: [
+          {
+            word: "Horizon",
+            pronunciation: "huh-RYE-zun",
+            definition: "The magical line in the far distance where the earth or river seems to meet the sky.",
+            funFact: "In ancient Egypt, the word for horizon was 'Akhet', symbolizing rebirth every single morning!",
+          },
+          {
+            word: "Courage",
+            pronunciation: "KUR-ij",
+            definition: "The strength of heart to do what is right, kind, and true, even when facing the unknown.",
+            funFact: "Ancient Egyptians believed that courage lived in the heart, and the heart was weighed against a golden feather!",
+          },
+        ],
+        hiddenStar: { xPercent: 50, yPercent: 33, clue: "Look right at the radiant white center of the rising morning sun!" },
+        funActivity: "Stand tall like a pyramid, raise both hands high to greet the morning, and shout: 'Good morning, world!'",
+      },
+    ],
+  },
+  // =========================================================================
+  // STORY 12: BRAZIL (AMAZON RAINFOREST) — CURUPIRA & THE EMERALD JAGUAR
+  // =========================================================================
+  {
+    id: "curupira_emerald_jaguar",
+    title: "Curupira & The Emerald Jaguar",
+    subtitle: "A Brazilian Rainforest Folktale from the Heart of the Amazon",
+    region: "South America",
+    country: "Brazil",
+    flag: "🇧🇷",
+    culture: "Indigenous Amazonian & Tupi-Guarani",
+    ageRange: "4–9 years",
+    readTimeMinutes: 6,
+    theme: "Nature Protection & Living in Harmony",
+    moral: "Honoring nature, listening to the forest breeze, and living in gentle harmony protect all living beings.",
+    coverCloth: "#047857",
+    coverSpine: "#064E3B",
+    accentColor: "#10B981",
+    paperColor: "#FFFDF7",
+    cardColor: "#ECFDF5",
+    summary:
+      "Deep in the Brazilian Amazon, the flame-haired forest guardian Curupira teams up with a playful pink river dolphin and giant water lilies to guide a lost emerald-spotted jaguar cub safely home to mama.",
+    coverSvg: `<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="amazonCoverSky" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#064E3B" />
+          <stop offset="50%" stop-color="#047857" />
+          <stop offset="100%" stop-color="#10B981" />
+        </linearGradient>
+        <linearGradient id="riverCover" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#0F766E" />
+          <stop offset="100%" stop-color="#134E4A" />
+        </linearGradient>
+      </defs>
+      <rect width="800" height="600" fill="url(#amazonCoverSky)" />
+      <!-- Giant Rainforest Canopy Trees -->
+      <circle cx="150" cy="180" r="140" fill="#065F46" opacity="0.9" />
+      <circle cx="650" cy="160" r="150" fill="#065F46" opacity="0.9" />
+      <circle cx="400" cy="120" r="180" fill="#047857" opacity="0.85" />
+      <!-- Amazon River Winding through deep jungle -->
+      <path d="M 0 460 Q 300 400 450 490 Q 600 560 800 500 L 800 600 L 0 600 Z" fill="url(#riverCover)" />
+      <!-- Curupira: Flame-red hair with backward-facing tracks, riding a collared peccary -->
+      <g transform="translate(400, 360)">
+        <!-- Friendly peccary wild boar companion -->
+        <ellipse cx="0" cy="40" rx="60" ry="38" fill="#374151" stroke="#1F2937" stroke-width="3" />
+        <circle cx="55" cy="30" r="18" fill="#4B5563" />
+        <ellipse cx="68" cy="32" rx="8" ry="6" fill="#F472B6" />
+        <!-- Curupira the forest guardian -->
+        <circle cx="0" cy="-20" r="22" fill="#FED7AA" />
+        <!-- Wild fiery flame-red hair -->
+        <path d="M -30 -25 Q -40 -60 -10 -75 Q 10 -90 25 -70 Q 40 -50 30 -20 Z" fill="#EF4444" stroke="#F97316" stroke-width="2" />
+        <circle cx="-5" cy="-20" r="3" fill="#1E293B" />
+        <circle cx="7" cy="-20" r="3" fill="#1E293B" />
+        <path d="M -2 -10 Q 2 -6 6 -10" stroke="#78350F" stroke-width="2" fill="none" />
+      </g>
+      <!-- Pink Boto River Dolphin jumping happily in river -->
+      <g transform="translate(620, 480)">
+        <path d="M -30 20 Q 0 -35 45 10 Q 20 5 -30 20 Z" fill="#F472B6" stroke="#FB7185" stroke-width="2" />
+        <polygon points="45,10 60,0 55,20" fill="#F472B6" />
+      </g>
+    </svg>`,
+    pages: [
+      {
+        pageNumber: 1,
+        chapterTitle: "Chapter 1: The Whispering Canopy of Giant Palms",
+        scenePrompt: "Curupira with vibrant red hair walking through the Amazon rainforest with feet turned backward to confuse hunters, greeting a colorful toucan and pink river dolphin.",
+        narrativeText:
+          "Deep in the heart of the Amazon basin, where giant emerald kapok trees touch the clouds, lived Curupira, the beloved guardian of the forest. He had bright flame-red hair, ears like gentle green leaves, and feet turned backward—so anyone following his tracks would walk the wrong way! His job was to protect the trees, the flowers, and every curious creature from harm.",
+        dialogueLines: [
+          {
+            speaker: "Curupira",
+            speakerRole: "character",
+            avatar: "🧒🏼",
+            text: "Listen to the leaves, little friends! The green heart of the Amazon beats for everyone who walks in peace.",
+            voiceName: "Puck",
+            mood: "sprightly & joyful",
+          },
+          {
+            speaker: "Tupi the Toucan",
+            speakerRole: "character",
+            avatar: "🦜",
+            text: "Tock-tock! Look Curupira, the morning mist is rising from the great winding river!",
+            voiceName: "Fenrir",
+            mood: "cheerful & bright",
+          },
+        ],
+        illustrationSvg: `<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="jungleMist" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#064E3B" />
+              <stop offset="50%" stop-color="#047857" />
+              <stop offset="100%" stop-color="#10B981" />
+            </linearGradient>
+            <linearGradient id="blackwater" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#115E59" />
+              <stop offset="100%" stop-color="#042F2E" />
+            </linearGradient>
+          </defs>
+          <rect width="800" height="380" fill="url(#jungleMist)" />
+          <rect y="380" width="800" height="220" fill="url(#blackwater)" />
+          <!-- Towering Kapok tree trunk on left -->
+          <path d="M 0 0 L 140 0 Q 160 250 190 380 L 0 380 Z" fill="#78350F" />
+          <ellipse cx="80" cy="180" rx="120" ry="90" fill="#065F46" />
+          <!-- Hanging liana vines and orchids -->
+          <path d="M 140 100 Q 180 240 160 380" stroke="#15803D" stroke-width="6" fill="none" />
+          <circle cx="160" cy="240" r="10" fill="#F43F5E" />
+          <circle cx="170" cy="300" r="8" fill="#FBBF24" />
+          <!-- Curupira standing on mossy bank -->
+          <g transform="translate(320, 390)">
+            <!-- Little jungle tunic of woven leaves -->
+            <path d="M -20 20 L 20 20 L 25 75 L -25 75 Z" fill="#15803D" />
+            <circle cx="0" cy="0" r="20" fill="#FED7AA" />
+            <!-- Wild fiery red flame hair -->
+            <path d="M -26 -6 Q -35 -40 -10 -55 Q 10 -70 25 -50 Q 35 -30 25 -6 Z" fill="#EF4444" stroke="#F97316" stroke-width="2" />
+            <circle cx="-5" cy="0" r="3" fill="#1E293B" />
+            <circle cx="7" cy="0" r="3" fill="#1E293B" />
+            <path d="M -2 8 Q 2 12 6 8" stroke="#78350F" stroke-width="2" fill="none" />
+            <!-- Feet turned backwards (pointing left while facing right) -->
+            <ellipse cx="-16" cy="78" rx="14" ry="6" fill="#FED7AA" />
+            <ellipse cx="6" cy="78" rx="14" ry="6" fill="#FED7AA" />
+          </g>
+          <!-- Big Rainbow-billed Toucan perched on branch -->
+          <g transform="translate(560, 240)">
+            <!-- Branch -->
+            <path d="M -60 30 Q 30 20 120 40" stroke="#78350F" stroke-width="10" fill="none" />
+            <!-- Toucan body -->
+            <ellipse cx="0" cy="0" rx="30" ry="40" fill="#0F172A" />
+            <circle cx="12" cy="-18" r="18" fill="#FED7AA" />
+            <circle cx="16" cy="-20" r="3" fill="#0F172A" />
+            <!-- Enormous rainbow bill -->
+            <path d="M 24 -24 Q 75 -28 90 -12 Q 60 5 22 -10 Z" fill="#FBBF24" stroke="#EF4444" stroke-width="2" />
+            <path d="M 60 -18 L 88 -14 L 65 -6 Z" fill="#22C55E" />
+          </g>
+          <!-- Pink Boto River Dolphin in water -->
+          <g transform="translate(580, 470)">
+            <path d="M -40 25 Q 0 -35 50 15 Q 15 5 -40 25 Z" fill="#F472B6" stroke="#FB7185" stroke-width="2" />
+            <circle cx="28" cy="-5" r="3" fill="#1E293B" />
+          </g>
+        </svg>`,
+        illustrationCaption: "Curupira walks playfully with backward footprints through the rainforest, greeted by Tupi the Toucan and the pink river dolphin.",
+        vocabulary: [
+          {
+            word: "Canopy",
+            pronunciation: "KAN-uh-pee",
+            definition: "The high, leafy rooftop of the rainforest formed by the overlapping branches of tall trees.",
+            funFact: "Over 80% of all rainforest creatures—like monkeys, tree frogs, and macaws—live up in the canopy!",
+          },
+          {
+            word: "Curupira",
+            pronunciation: "koo-roo-PEE-rah",
+            definition: "The beloved forest protector in Brazilian folklore who watches over trees and animals.",
+            funFact: "Curupira's backward footprints confuse anyone who tries to hurt the forest by leading them away into safe glades!",
+          },
+        ],
+        hiddenStar: { xPercent: 70, yPercent: 40, clue: "Look right beside Tupi the Toucan's colorful rainbow beak!" },
+        funActivity: "Whistle like a gentle forest bird and gently tap your heels together three times.",
+      },
+      {
+        pageNumber: 2,
+        chapterTitle: "Chapter 2: The Bioluminescent Night Walk",
+        scenePrompt: "The Amazon jungle at night with glowing blue mushrooms, green fireflies, and Curupira following the distressed cry of a lost animal.",
+        narrativeText:
+          "When night fell over the Amazon, the forest transformed into a fairy tale of emerald and sapphire light. Bioluminescent mushrooms glowed like lanterns along the tree bark, and constellations of fireflies drifted over the water. Suddenly, Curupira’s sharp ears caught a tiny, distressed whimper coming from the tangled roots of a giant strangler fig. A little emerald-spotted jaguar cub was lost in the dark!",
+        dialogueLines: [
+          {
+            speaker: "Juma the Little Jaguar",
+            speakerRole: "character",
+            avatar: "🐆",
+            text: "Mew! I chased a blue morpho butterfly and now I cannot find my way back to the warm riverbank!",
+            voiceName: "Kore",
+            mood: "scared & small",
+          },
+          {
+            speaker: "Curupira",
+            speakerRole: "character",
+            avatar: "🧒🏼",
+            text: "Don't cry, little Juma! The fireflies will be our lanterns, and the pink river dolphin will guide us along the water.",
+            voiceName: "Puck",
+            mood: "comforting & cheerful",
+          },
+        ],
+        illustrationSvg: `<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="amazonNight" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#022C22" />
+              <stop offset="50%" stop-color="#064E3B" />
+              <stop offset="100%" stop-color="#042F2E" />
+            </linearGradient>
+          </defs>
+          <rect width="800" height="600" fill="url(#amazonNight)" />
+          <!-- Giant Strangler Fig Tree with tangled roots -->
+          <path d="M 0 0 Q 180 120 150 600 M 50 0 Q 240 180 200 600 M 120 0 Q 280 220 260 600" stroke="#065F46" stroke-width="16" fill="none" />
+          <!-- Glowing Bioluminescent Mushrooms on tree bark -->
+          <g transform="translate(180, 360)">
+            <ellipse cx="0" cy="0" rx="18" ry="10" fill="#38BDF8" opacity="0.9" />
+            <path d="M 0 0 L 0 20" stroke="#38BDF8" stroke-width="4" />
+            <circle cx="0" cy="0" r="30" fill="none" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="3,3" />
+          </g>
+          <g transform="translate(220, 280)">
+            <ellipse cx="0" cy="0" rx="15" ry="8" fill="#4ADE80" opacity="0.9" />
+            <path d="M 0 0 L 0 16" stroke="#4ADE80" stroke-width="3" />
+          </g>
+          <!-- Swarm of glowing yellow fireflies -->
+          <circle cx="340" cy="180" r="5" fill="#FDE047" filter="drop-shadow(0 0 8px #FDE047)" />
+          <circle cx="480" cy="220" r="4" fill="#FDE047" filter="drop-shadow(0 0 8px #FDE047)" />
+          <circle cx="620" cy="160" r="6" fill="#FDE047" filter="drop-shadow(0 0 10px #FDE047)" />
+          <circle cx="540" cy="340" r="5" fill="#FDE047" filter="drop-shadow(0 0 8px #FDE047)" />
+          <!-- Curupira crouching down to comfort little Jaguar cub -->
+          <g transform="translate(420, 440)">
+            <circle cx="0" cy="0" r="18" fill="#FED7AA" />
+            <!-- Glowing red flame hair -->
+            <path d="M -22 -6 Q -30 -35 -10 -45 Q 10 -60 22 -40 Q 30 -25 22 -6 Z" fill="#EF4444" stroke="#F97316" stroke-width="2" />
+            <path d="M -15 15 L 15 15 L 20 60 L -20 60 Z" fill="#15803D" />
+            <!-- Hand reaching out gently -->
+            <path d="M 12 30 Q 35 30 55 45" stroke="#FED7AA" stroke-width="7" stroke-linecap="round" fill="none" />
+          </g>
+          <!-- Little spotted Emerald Jaguar Cub nestled in roots -->
+          <g transform="translate(520, 480)">
+            <ellipse cx="0" cy="0" rx="36" ry="24" fill="#F59E0B" stroke="#B45309" stroke-width="2" />
+            <circle cx="30" cy="-12" r="18" fill="#F59E0B" stroke="#B45309" stroke-width="2" />
+            <!-- Cute round jaguar ears -->
+            <circle cx="20" cy="-26" r="6" fill="#78350F" />
+            <circle cx="38" cy="-26" r="6" fill="#78350F" />
+            <!-- Big reflective eyes -->
+            <circle cx="35" cy="-12" r="4" fill="#10B981" />
+            <circle cx="36" cy="-13" r="1.5" fill="#FFFFFF" />
+            <!-- Spots (rosettes) -->
+            <circle cx="-12" cy="-6" r="4" fill="#78350F" />
+            <circle cx="4" cy="4" r="5" fill="#78350F" />
+            <circle cx="-20" cy="6" r="4" fill="#78350F" />
+            <!-- Little tail -->
+            <path d="M -34 0 Q -50 -10 -45 -25" stroke="#F59E0B" stroke-width="6" fill="none" stroke-linecap="round" />
+          </g>
+        </svg>`,
+        illustrationCaption: "Guided by glowing mushrooms and drifting fireflies, Curupira discovers little Juma the lost jaguar cub.",
+        vocabulary: [
+          {
+            word: "Bioluminescent",
+            pronunciation: "bye-oh-loo-mih-NES-ent",
+            definition: "The natural power of living things—like fireflies and mushrooms—to glow with light in the dark.",
+            funFact: "Many Amazonian fungi glow green and blue to attract night beetles that help spread their spores!",
+          },
+          {
+            word: "Jaguar",
+            pronunciation: "JAG-wahr",
+            definition: "The largest and most powerful spotted wild cat in the Americas, famous for its love of swimming.",
+            funFact: "Unlike domestic housecats, jaguars adore water and often spend hot afternoons splashing in rivers!",
+          },
+        ],
+        hiddenStar: { xPercent: 28, yPercent: 48, clue: "Look right at the glowing blue mushroom cluster on the tree trunk!" },
+        funActivity: "Crouch low, give a quiet little 'mew-mew' like a baby jaguar, and let a friend give you a gentle hug.",
+      },
+      {
+        pageNumber: 3,
+        chapterTitle: "Chapter 3: The Song of the Victoria Water Lily",
+        scenePrompt: "Curupira and Juma riding across the river on an enormous floating Victoria Amazonica water lily pad, steered by the pink dolphin.",
+        narrativeText:
+          "To cross the wide, deep blackwater lagoon, Curupira whistled a high, warbling note into the night breeze. From beneath the calm surface, the pink boto dolphin surfaced with a splash, pushing an enormous circular Victoria Amazonica water lily pad. The pad was as wide as a dining table, with upturned red rims strong enough to hold Curupira and Juma safely afloat!",
+        dialogueLines: [
+          {
+            speaker: "Pink Boto Dolphin",
+            speakerRole: "character",
+            avatar: "🐬",
+            text: "Climb aboard the green water shield! Hold on tight to each other as I push you across to the jaguar meadow!",
+            voiceName: "Aoede",
+            mood: "melodic & playful",
+          },
+          {
+            speaker: "Juma the Little Jaguar",
+            speakerRole: "character",
+            avatar: "🐆",
+            text: "Look Curupira! The giant white lily flower opened its petals and smells like sweet pineapples!",
+            voiceName: "Kore",
+            mood: "amazed & happy",
+          },
+        ],
+        illustrationSvg: `<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lagoonNight" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#022C22" />
+              <stop offset="60%" stop-color="#0F766E" />
+              <stop offset="100%" stop-color="#042F2E" />
+            </linearGradient>
+          </defs>
+          <rect width="800" height="600" fill="url(#lagoonNight)" />
+          <!-- Starry sky reflection on water -->
+          <circle cx="120" cy="100" r="2.5" fill="#FFFFFF" />
+          <circle cx="260" cy="80" r="3" fill="#FDE047" />
+          <circle cx="680" cy="90" r="3.5" fill="#FFFFFF" />
+          <!-- Enormous Victoria Amazonica Water Lily Pad -->
+          <g transform="translate(400, 380)">
+            <!-- Outer red upturned rim -->
+            <ellipse cx="0" cy="0" rx="190" ry="85" fill="#047857" stroke="#BE123C" stroke-width="10" />
+            <!-- Geometric vein web -->
+            <line x1="0" y1="0" x2="-140" y2="-40" stroke="#065F46" stroke-width="3" />
+            <line x1="0" y1="0" x2="140" y2="-40" stroke="#065F46" stroke-width="3" />
+            <line x1="0" y1="0" x2="-120" y2="40" stroke="#065F46" stroke-width="3" />
+            <line x1="0" y1="0" x2="120" y2="40" stroke="#065F46" stroke-width="3" />
+            <!-- Curupira sitting cross-legged -->
+            <g transform="translate(-40, -40)">
+              <circle cx="0" cy="-10" r="18" fill="#FED7AA" />
+              <path d="M -22 -16 Q -30 -45 -10 -55 Q 10 -70 22 -50 Q 30 -35 22 -16 Z" fill="#EF4444" stroke="#F97316" stroke-width="2" />
+              <path d="M -15 10 L 15 10 L 20 40 L -20 40 Z" fill="#15803D" />
+            </g>
+            <!-- Juma the jaguar cub snuggled beside him -->
+            <g transform="translate(50, -30)">
+              <ellipse cx="0" cy="0" rx="30" ry="20" fill="#F59E0B" />
+              <circle cx="24" cy="-10" r="14" fill="#F59E0B" />
+              <circle cx="16" cy="-20" r="4" fill="#78350F" />
+              <circle cx="28" cy="-20" r="4" fill="#78350F" />
+              <circle cx="26" cy="-10" r="3" fill="#10B981" />
+            </g>
+          </g>
+          <!-- Giant White Victoria Lily Flower blooming beside the pad -->
+          <g transform="translate(620, 360)">
+            <circle cx="0" cy="0" r="38" fill="#FFFFFF" />
+            <circle cx="0" cy="0" r="28" fill="#FDF2F8" />
+            <circle cx="0" cy="0" r="14" fill="#FDE047" />
+          </g>
+          <!-- Pink Boto River Dolphin swimming behind the pad -->
+          <g transform="translate(220, 350)">
+            <path d="M -50 40 Q 0 -40 60 15 Q 15 0 -50 40 Z" fill="#F472B6" stroke="#FB7185" stroke-width="3" />
+            <polygon points="60,15 75,5 70,25" fill="#F472B6" />
+            <circle cx="35" cy="-8" r="3" fill="#1E293B" />
+          </g>
+        </svg>`,
+        illustrationCaption: "The gentle pink dolphin guides Curupira and Juma safely across the river on a giant Victoria Amazonica lily pad.",
+        vocabulary: [
+          {
+            word: "Victoria Lily",
+            pronunciation: "vik-TOR-ee-uh LIL-ee",
+            definition: "The largest water lily in the world with floating leaves up to 8 feet wide that can support a child's weight!",
+            funFact: "Victoria lily flowers only open at twilight, releasing a rich aroma of fresh pineapple to welcome beetles!",
+          },
+          {
+            word: "Boto Dolphin",
+            pronunciation: "BOH-toh DAHL-fin",
+            definition: "A rare freshwater pink dolphin that lives exclusively in the Amazon and Orinoco river basins.",
+            funFact: "Boto dolphins can turn their necks a full 90 degrees to maneuver between submerged tree trunks!",
+          },
+        ],
+        hiddenStar: { xPercent: 78, yPercent: 60, clue: "Look right at the glowing white Victoria water lily bloom!" },
+        funActivity: "Hold your arms out wide like a giant floating lily pad and gently sway like water ripples.",
+      },
+      {
+        pageNumber: 4,
+        chapterTitle: "Chapter 4: The Great Green Canopy Blessing",
+        scenePrompt: "Sunrise over the Amazon canopy as Mother Jaguar embraces Juma, with Curupira surrounded by macaws, sloths, and river dolphins in celebration.",
+        narrativeText:
+          "As the first golden rays of sunrise painted the emerald treetops, Curupira and Juma reached the misty clearing. With a joyful, deep rumble, Mama Jaguar bounded from the bamboo grove, licking her little cub with tears of happiness! Curupira smiled as blue-and-yellow macaws flew overhead in celebratory loops. The forest whispered its thank-you in the morning breeze: when we care for nature, nature cares for us.",
+        dialogueLines: [
+          {
+            speaker: "Mama Jaguar",
+            speakerRole: "character",
+            avatar: "🐆",
+            text: "Thank you, noble Curupira! You have brought my cub safely home, and the forest is at peace.",
+            voiceName: "Aoede",
+            mood: "loving & grateful",
+          },
+          {
+            speaker: "Curupira",
+            speakerRole: "character",
+            avatar: "🧒🏼",
+            text: "Live bravely, little Juma! Whenever the forest winds blow, remember that you are always protected.",
+            voiceName: "Puck",
+            mood: "joyous & triumphant",
+          },
+        ],
+        illustrationSvg: `<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="amazonDawn" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#38BDF8" />
+              <stop offset="40%" stop-color="#FDE047" />
+              <stop offset="70%" stop-color="#F97316" />
+              <stop offset="100%" stop-color="#10B981" />
+            </linearGradient>
+            <linearGradient id="forestFloor" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#047857" />
+              <stop offset="100%" stop-color="#064E3B" />
+            </linearGradient>
+          </defs>
+          <rect width="800" height="380" fill="url(#amazonDawn)" />
+          <rect y="380" width="800" height="220" fill="url(#forestFloor)" />
+          <!-- Morning Sun rising above the canopy -->
+          <circle cx="400" cy="180" r="70" fill="#FFFFFF" filter="drop-shadow(0 0 35px #FDE047)" />
+          <!-- Colorful Blue & Yellow Macaws flying in the dawn sky -->
+          <g transform="translate(240, 100)">
+            <path d="M -30 0 Q 0 -25 35 10 Q 10 5 -30 0 Z" fill="#2563EB" />
+            <path d="M -20 5 Q 0 -15 25 12" stroke="#FBBF24" stroke-width="4" fill="none" />
+            <path d="M -30 0 L -60 15 L -45 5 Z" fill="#2563EB" />
+          </g>
+          <g transform="translate(560, 80)">
+            <path d="M -30 0 Q 0 -25 35 10 Q 10 5 -30 0 Z" fill="#2563EB" />
+            <path d="M -20 5 Q 0 -15 25 12" stroke="#FBBF24" stroke-width="4" fill="none" />
+          </g>
+          <!-- Mama Jaguar nuzzling little Juma -->
+          <g transform="translate(500, 420)">
+            <!-- Mama Jaguar -->
+            <ellipse cx="0" cy="0" rx="60" ry="38" fill="#F59E0B" stroke="#B45309" stroke-width="3" />
+            <circle cx="-45" cy="-20" r="26" fill="#F59E0B" stroke="#B45309" stroke-width="3" />
+            <circle cx="-55" cy="-36" r="8" fill="#78350F" />
+            <circle cx="-35" cy="-36" r="8" fill="#78350F" />
+            <circle cx="-48" cy="-20" r="4.5" fill="#10B981" />
+            <!-- Rosettes -->
+            <circle cx="0" cy="-10" r="6" fill="#78350F" />
+            <circle cx="20" cy="5" r="7" fill="#78350F" />
+            <circle cx="-15" cy="8" r="6" fill="#78350F" />
+            <!-- Little Juma leaning against mama -->
+            <g transform="translate(-80, 20)">
+              <ellipse cx="0" cy="0" rx="26" ry="18" fill="#FBBF24" />
+              <circle cx="16" cy="-10" r="12" fill="#FBBF24" />
+              <circle cx="18" cy="-10" r="2.5" fill="#10B981" />
+            </g>
+          </g>
+          <!-- Curupira waving joyfully on left -->
+          <g transform="translate(240, 420)">
+            <circle cx="0" cy="0" r="22" fill="#FED7AA" />
+            <path d="M -26 -6 Q -35 -40 -10 -55 Q 10 -70 25 -50 Q 35 -30 25 -6 Z" fill="#EF4444" stroke="#F97316" stroke-width="2" />
+            <path d="M -20 22 L 20 22 L 25 80 L -25 80 Z" fill="#15803D" />
+            <!-- Waving arm -->
+            <path d="M 18 35 Q 40 10 50 -10" stroke="#FED7AA" stroke-width="8" stroke-linecap="round" fill="none" />
+          </g>
+          <!-- Blooming Amazonian Pink Orchids on foreground vines -->
+          <g transform="translate(100, 500)">
+            <circle cx="0" cy="0" r="16" fill="#F43F5E" />
+            <circle cx="0" cy="0" r="8" fill="#FBBF24" />
+          </g>
+          <g transform="translate(700, 510)">
+            <circle cx="0" cy="0" r="18" fill="#F43F5E" />
+            <circle cx="0" cy="0" r="9" fill="#FBBF24" />
+          </g>
+        </svg>`,
+        illustrationCaption: "Mama Jaguar happily embraces Juma as Curupira waves under the golden morning canopy and flying blue macaws.",
+        vocabulary: [
+          {
+            word: "Harmony",
+            pronunciation: "HAR-muh-nee",
+            definition: "Living, playing, and sharing together in gentle peace and friendly agreement.",
+            funFact: "Indigenous peoples of the Amazon have lived in sustainable harmony with the rainforest for over 12,000 years!",
+          },
+          {
+            word: "Guardian",
+            pronunciation: "GAR-dee-un",
+            definition: "A brave and gentle protector who watches over someone or something precious.",
+            funFact: "Every child who cares for a houseplant, feeds birds, or respects pets is a real-life nature guardian!",
+          },
+        ],
+        hiddenStar: { xPercent: 50, yPercent: 30, clue: "Look right in the center of the radiant rising morning sun!" },
+        funActivity: "Put both hands on your chest, breathe in the fresh morning air, and say: 'I am a friend and guardian of nature!'",
+      },
+    ],
+  },
 ];
